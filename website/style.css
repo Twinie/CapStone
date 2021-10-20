@@ -23,27 +23,11 @@ body{
     display: grid;
     grid-gap:10px;
 }
-.holder{
-}
 
 .entry{
     background: rgba(59, 74, 107, .4);
     font-size: 20px;
-}
-
-#entryHolder{
-
-}
-
-#date{
-
-}
-
-#temp{
-
-}
-
-#content{
+    box-shadow: 2px 4px 5px #444;
 
 }
 
@@ -84,6 +68,7 @@ button{
     font-family: 'Oswald', sans-serif;
     border: none;
     box-shadow: 2px 4px 5px #444;
+    cursor: pointer;
 }
 
 h1{
@@ -109,7 +94,6 @@ button:focus {
 ::placeholder { /* Firefox, Chrome, Opera */ 
     color: #f0d43a; 
     font-family: 'Oswald', sans-serif;
-    box-shadow: 2px 4px 5px #444;
 
 
 } 
