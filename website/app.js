@@ -27,7 +27,7 @@ function performAction(event) {
     getWeather(baseURL, zipCode, APIKey).then(function (data) {
         // Create a new date instance dynamically with JS
         let d = new Date();
-        let newDate = d.getMonth() + '.' + d.getDate() + '.' + d.getFullYear();
+        let newDate = (d.getMonth() + 1) + '.' + d.getDate() + '.' + d.getFullYear();
 
         // returned the called postWeather function to avoid nesting of promises.
         return postWeather('http://localhost:3000/addWeather', { temperature: data.main.temp, date: newDate, userResponse: userResp })
@@ -61,9 +61,9 @@ const updateUI = async () => {
     const res = await fetch('http://localhost:3000/weather');
     try {
         const allData = await res.json();
-        document.getElementById('date').innerHTML = allData.addEntry.date;
-        document.getElementById('temp').innerHTML = allData.addEntry.temperature;
-        document.getElementById('content').innerHTML = allData.addEntry.userResponse;
+        document.getElementById('date').innerHTML = `Date : ${allData.addEntry.date}`;
+        document.getElementById('temp').innerHTML = `Temp : ${allData.addEntry.temperature} K`;
+        document.getElementById('content').innerHTML = `User-Response : ${allData.addEntry.userResponse}`;
 
     } catch (error) {
         console.log("error", error);
