@@ -30,7 +30,7 @@ function listening() {
 };
 
 // Initialize all route with a callback function
-app.get('http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=7bbbde674a90e21870da2f7086b7b970', sendData)
+app.get('/weather', sendData)
 
 // Callback function to complete GET '/all'
 function sendData(req, res) {
@@ -38,12 +38,14 @@ function sendData(req, res) {
 }
 
 // Post Route
-weatherData = [];
 app.post('/addWeather', entry);
 function entry(request, response) {
-    newEntry = {
-
+    let newEntry = {
+        temperature: req.body.temperature,
+        date: req.body.date,
+        userResponse: req.body.userResponse
     }
-    weatherData.push(newEntry);
-    response.send(weatherData);
+    projectData['addEntry'] = newEntry;
+
+    response.send(projectData);
 }

@@ -5,23 +5,30 @@ body{
 
 #app{
     display: grid;
-    grid-auto-rows: minmax(150px, auto);
-    /* grid-template-columns:  */
+    
+    grid-auto-rows: minmax(200px);
+    /* grid-template-columns: auto; */
     height:100vh;
     background: #f23557;
     color: #f0d43a;
     justify-content: center;
     grid-gap: 1em;
-    font-size: 20px;
+    font-size: 40px;
     font-family: 'Oswald', sans-serif;
+    box-shadow: 2px 4px 5px #444;
+
 }
 
+.feel{
+    display: grid;
+    grid-gap:10px;
+}
 .holder{
-
 }
 
 .entry{
     background: rgba(59, 74, 107, .4);
+    font-size: 20px;
 }
 
 #entryHolder{
@@ -41,9 +48,11 @@ body{
 }
 
 .headline {
+    height:25px
 
 }
 .title{
+    color: black;
 
 }
 
@@ -62,11 +71,13 @@ input{
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
     border: none;
+    box-shadow: 2px 4px 5px #444;
+
 }
 
 button{
-    width: 400px;
-    height: 100px;
+    width: 300px;
+    height: 80px;
     background: #3b4a6b;
     color: #f0d43a;
     font-size: 26px;
@@ -74,6 +85,7 @@ button{
     border: none;
     box-shadow: 2px 4px 5px #444;
 }
+
 h1{
     font-size: 36px;
 }
@@ -83,6 +95,8 @@ textarea{
     color: #f0d43a;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
+    box-shadow: 2px 4px 5px #444;
+
 }
 /* Reset style for HTML element on active to have no border*/
 input:focus,
@@ -95,6 +109,8 @@ button:focus {
 ::placeholder { /* Firefox, Chrome, Opera */ 
     color: #f0d43a; 
     font-family: 'Oswald', sans-serif;
+    box-shadow: 2px 4px 5px #444;
+
 
 } 
   
@@ -109,3 +125,5 @@ button:focus {
     font-family: 'Oswald', sans-serif;
 
 } 
+
+
