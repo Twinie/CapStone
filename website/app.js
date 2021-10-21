@@ -17,22 +17,28 @@ const getWeather = async (baseURL, zipCode, APIKey) => {
 document.getElementById('generate').addEventListener('click', performAction)
 
 function performAction(event) {
+
     const zipCode = document.getElementById('zip').value
     const userResp = document.getElementById('feelings').value
+    if (zipCode.length === 5 && isNaN(zipCode) === true) {
+        alert("Incorrect Zip-Code!!")
+    }
 
     // chaining promises for get, post and update UI
 
     // getWeather function called
-    getWeather(baseURL, zipCode, APIKey).then(function (data) {
-        // Create a new date instance dynamically with JS
-        let d = new Date();
-        let newDate = (d.getMonth() + 1) + '.' + d.getDate() + '.' + d.getFullYear();
+    else {
+        getWeather(baseURL, zipCode, APIKey).then(function (data) {
+            // Create a new date instance dynamically with JS
+            let d = new Date();
+            let newDate = (d.getMonth() + 1) + '.' + d.getDate() + '.' + d.getFullYear();
 
-        // returned the called postWeather function to avoid nesting of promises.
-        return postWeather('http://localhost:3000/addWeather', { temperature: data.main.temp, date: newDate, userResponse: userResp })
-    }).then(function (data) {
-        updateUI();
-    })
+            // returned the called postWeather function to avoid nesting of promises.
+            return postWeather('http://localhost:3000/addWeather', { temperature: data.main.temp, date: newDate, userResponse: userResp })
+        }).then(function (data) {
+            updateUI();
+        })
+    }
 }
 
 const postWeather = async (url = '', data = {}) => {
