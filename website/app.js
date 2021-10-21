@@ -1,7 +1,6 @@
 /* Global Variables */
 const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-const APIKey = '&APPID=7bbbde674a90e21870da2f7086b7b970';
-// const urlWithZipCode = 'api.openweathermap.org/data/2.5/weather?zip=req.body.zipCode,&appid=7bbbde674a90e21870da2f7086b7b970';
+const APIKey = '&APPID=7bbbde674a90e21870da2f7086b7b970&units=metric';
 
 const getWeather = async (baseURL, zipCode, APIKey) => {
     const resp = await fetch(baseURL + zipCode + APIKey)
@@ -62,7 +61,7 @@ const updateUI = async () => {
     try {
         const allData = await res.json();
         document.getElementById('date').innerHTML = `Date : ${allData.addEntry.date}`;
-        document.getElementById('temp').innerHTML = `Temp : ${allData.addEntry.temperature} K`;
+        document.getElementById('temp').innerHTML = `Temp : ${allData.addEntry.temperature} celsius`;
         document.getElementById('content').innerHTML = `User-Response : ${allData.addEntry.userResponse}`;
 
     } catch (error) {
