@@ -20,7 +20,9 @@ function performAction(event) {
 
     const zipCode = document.getElementById('zip').value
     const userResp = document.getElementById('feelings').value
-    if (zipCode.length === 5 && isNaN(zipCode) === true) {
+
+    // assuming the length of the zip-code to be 5 numerical digit long.
+    if (zipCode.length !== 5 || isNaN(zipCode) === true) {
         alert("Incorrect Zip-Code!!")
     }
 
