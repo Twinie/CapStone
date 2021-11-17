@@ -1,9 +1,17 @@
 /* Global Variables */
-const baseURL = 'http://api.openweathermap.org/data/2.5/weather?zip=';
-const APIKey = '&APPID=7bbbde674a90e21870da2f7086b7b970&units=metric';
+const baseURL = 'http://api.geonames.org/searchJSON?formatted=true&q=';
+const APIKey = '&maxRows=1&lang=en&username=twinks';
 
-const getWeather = async (baseURL, zipCode, APIKey) => {
-    const resp = await fetch(baseURL + zipCode + APIKey)
+https//pixabay.com/api/?key=24362278-cd2f3f704f493ae596473ddc0&q=yellow+flowers&image_type=photo&pretty=true
+pixAPIkey = '24362278-cd2f3f704f493ae596473ddc0'
+
+weatherBitAPIkey = '929335d4264b46a981c4623cb0c83875';
+baseURLweatherBit = 'https://api.weatherbit.io/v2.0/current'
+https://api.weatherbit.io/v2.0/forecast/daily?city=Raleigh,NC&key=API_KEY
+
+
+const getCity = async (baseURL, cityName, APIKey) => {
+    const resp = await fetch(baseURL + cityName + APIKey)
 
     try {
         const data = await resp.json();
@@ -18,19 +26,19 @@ document.getElementById('generate').addEventListener('click', performAction)
 
 function performAction(event) {
 
-    const zipCode = document.getElementById('zip').value
+    const cityName = document.getElementById('cityName').value
     const userResp = document.getElementById('feelings').value
 
     // assuming the length of the zip-code to be 5 numerical digit long.
-    if (zipCode.length !== 5 || isNaN(zipCode) === true) {
-        alert("Incorrect Zip-Code!!")
+    if (isNaN(cityName) === false) {
+        alert("Please Enter a valid City!!")
     }
 
     // chaining promises for get, post and update UI
 
     // getWeather function called
     else {
-        getWeather(baseURL, zipCode, APIKey).then(function (data) {
+        getWeather(baseURL, cityName, APIKey).then(function (data) {
             // Create a new date instance dynamically with JS
             let d = new Date();
             let newDate = (d.getMonth() + 1) + '.' + d.getDate() + '.' + d.getFullYear();
@@ -68,9 +76,9 @@ const updateUI = async () => {
     const res = await fetch('http://localhost:3000/weather');
     try {
         const allData = await res.json();
-        document.getElementById('date').innerHTML = `Date : ${allData.addEntry.date}`;
-        document.getElementById('temp').innerHTML = `Temp : ${allData.addEntry.temperature} celsius`;
-        document.getElementById('content').innerHTML = `User-Response : ${allData.addEntry.userResponse}`;
+        document.getElementById('country').innerHTML = `Country : ${allData.addEntry.date}`;
+        document.getElementById('lat').innerHTML = `Latitude : ${allData.addEntry.temperature} celsius`;
+        document.getElementById('long').innerHTML = `Longitude : ${allData.addEntry.userResponse}`;
 
     } catch (error) {
         console.log("error", error);
