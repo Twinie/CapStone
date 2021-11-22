@@ -3,19 +3,22 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Weather Journal</title>
+  <title>Travel-App</title>
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/styles/style.css">
 </head>
 
 <body>
   <div id="app">
     <div class="holder headline">
-      Weather Journal App
+      TRAVEL APP
     </div>
     <div class="holder zip">
-      <label for="city">Enter city here</label>
-      <input type="text" id="cityName" placeholder="enter city here">
+      <label for="city">Enter the Destined City!</label>
+      <form action="" onsubmit="Client.performAction(event)"></form>
+      <input type="text" id="cityName" placeholder="Enter City-name">
+      <input type="date" id="visitDate" placeholder="">
+
       <button id="generate" type="submit"> Generate </button>
     </div>
 
@@ -23,8 +26,11 @@
       <div class="title">Most Recent Entry</div>
       <div id="entryHolder">
         <div id="country"></div>
-        <div id="Lat"></div>
-        <div id="Long"></div>
+        <div id="lat"></div>
+        <div id="long"></div>
+        <div id="temp"></div>
+        <div id="wind"></div>
+        <img id="placeImage" src="">
       </div>
     </div>
   </div>

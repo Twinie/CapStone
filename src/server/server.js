@@ -32,22 +32,22 @@ function listening() {
 };
 
 // Initialize all route with a callback function
-app.get('/weather', sendData)
+app.get('/city', sendData)
 
 // Callback function to complete GET '/all'
 function sendData(req, res) {
-    res.send(projectData);
+    res.send();
 }
 
 // Post Route
-app.post('/addWeather', entry);
-function entry(request, response) {
-    let newEntry = {
-        temperature: request.body.temperature,
-        date: request.body.date,
-        userResponse: request.body.userResponse
-    }
-    projectData['addEntry'] = newEntry;
+// app.post('/addWeather', entry);
+// function entry(request, response) {
+//     let newEntry = {
+//         temperature: request.body.temperature,
+//         date: request.body.date,
+//         userResponse: request.body.userResponse
+//     }
+//     projectData['addEntry'] = newEntry;
 
-    response.send(projectData);
-}
+//     response.send(projectData);
+// }

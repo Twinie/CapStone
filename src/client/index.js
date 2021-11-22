@@ -1,1 +1,7 @@
-import { performAction } from '/.JS/app'
+import { performAction } from './JS/app'
+
+import './styles/style.scss'
+
+export {
+    performAction
+}
