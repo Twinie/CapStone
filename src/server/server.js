@@ -36,7 +36,7 @@ app.get('/city', sendData)
 
 // Callback function to complete GET '/all'
 function sendData(req, res) {
-    res.send();
+    res.sendFile('dist/index.html')
 }
 
 // Post Route
