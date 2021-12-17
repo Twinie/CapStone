@@ -1,8 +1,10 @@
-// Setup empty JS object to act as endpoint for all routes
-const projectData = {};
-
 // Require Express to run server and routes
 const express = require('express');
+
+
+const dotenv = require('dotenv');
+dotenv.config();
+
 
 // Start up an instance of app
 const app = express();
@@ -12,6 +14,7 @@ const app = express();
 const bodyParser = require('body-parser')
 /* Middleware*/
 const cors = require('cors');
+const { getKeys } = require('./keys');
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -21,7 +24,7 @@ app.use(cors())
 
 // Initialize the main project folder
 app.use(express.static('dist'));
-const port = 3000;
+const port = 8081;
 
 // Spin up the server
 const server = app.listen(port, listening);
@@ -32,12 +35,12 @@ function listening() {
 };
 
 // Initialize all route with a callback function
-// TODO: Remove if not used
-app.get('/city', sendData)
+app.get('/', function () {
+    res.sendFile('dist/index.html');
+});
 
-// Callback function to complete GET '/all'
-function sendData(req, res) {
-    res.sendFile('dist/index.html')
-}
-
+app.get('/getApiKeys', function (req, res) {
+    const keys = getKeys();
+    res.send({ apiKeys: keys });
+})
 

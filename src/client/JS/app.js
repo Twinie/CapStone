@@ -4,61 +4,54 @@ import { isValidCity } from "./validation";
 
 // Global Variables
 const geonameURL = 'http://api.geonames.org/searchJSON?formatted=true&q=';
-const geonameKey = '&maxRows=1&lang=en&username=twinks';
+const geonameKeyPart = '&maxRows=1&lang=en&username=';
 
-const weatherBitURL = 'https://api.weatherbit.io/v2.0/current?'
-const weatherBitAPIkey = '&key=929335d4264b46a981c4623cb0c83875'
+const weatherBitURL = 'https://api.weatherbit.io/v2.0/current?';
+const weatherBitAPIkeyParam = '&key=';
 
 const weatherBitURL1 = 'https://api.weatherbit.io/v2.0/forecast/daily?';
 
-const pixURL = 'https://pixabay.com/api/?key=24362278-cd2f3f704f493ae596473ddc0&q='
-const pixabay = '&image_type=photo&pretty=true'
-
-// Local Storage set-up
-const clearLi = document.getElementById('clear');
-const addList = document.getElementById('addList');
-const inputCity = document.getElementById('cityName');
-const inputDate = document.getElementById('visitDate');
+const pixURL = 'https://pixabay.com/api/?key='
+const pixabay = '&image_type=photo&pretty=true';
 
 let itemsArray = [];
 
 const liMaker = (text) => {
+    const addList = document.getElementById('addList');
     const list = document.createElement('li');
     list.textContent = text;
     addList.appendChild(list);
     list.classList.add('remDisc')
 }
-let items;
-if (localStorage.getItem('items')) {
-    itemsArray = JSON.parse(localStorage.getItem('items'));
-    liMaker(inputCity.value + " " + inputDate.value);
-}
-else {
-    items = [];
-}
 
-const data = JSON.parse(localStorage.getItem('items'))
 
-document.getElementById('generate').addEventListener('click', function (e) {
-    e.preventDefault();
 
-    itemsArray.push(inputCity.value + inputDate.value);
+const setArray = () => {
+    const inputCity = document.getElementById('cityName');
+    const inputDate = document.getElementById('visitDate');
+    itemsArray.push(inputCity.value + " - " + inputDate.value);
     liMaker(inputCity.value + " - " + inputDate.value);
     localStorage.setItem('items', JSON.stringify(itemsArray));
+}
 
-})
+const setInitialList = () => {
+    const data = JSON.parse(localStorage.getItem('items'));
+    if (data !== null && data.length > 0) {
+        data.forEach((item) => {
+            liMaker(item);
+        });
+        itemsArray = data;
+    }
+}
 
-// TODO: Wrap this inside a function
-data.forEach((item) => {
-    liMaker(item)
-})
-
-clearLi.addEventListener('click', function () {
+const clearItems = () => {
+    const addList = document.getElementById('addList');
     localStorage.clear()
     while (addList.firstChild) {
         addList.removeChild(addList.firstChild)
     }
-})
+}
+
 
 // API Call for 3 web API
 const getCity = async (geonameURL, cityName, geonameKey) => {
@@ -72,8 +65,16 @@ const getCity = async (geonameURL, cityName, geonameKey) => {
     }
 }
 
+const getAllData = (keyData, weatherUrl, cityName) => {
+    const weatherBitAPIkeyPart = `${weatherBitAPIkeyParam}${keyData.apiKeys.weatherBitAPIKey}`;
+    const pixaCallURL = `${pixURL}${keyData.apiKeys.pixAPIKey}&q=}`;
+    const geonameKey = geonameKeyPart + keyData.apiKeys.geoAPIKey;
+    getData(cityName, weatherUrl, geonameURL, geonameKey, weatherBitAPIkeyPart, pixaCallURL, pixabay);
+}
+
 function performAction(event) {
     event.preventDefault();
+    // Set array for the local storage
 
     const cityName = document.getElementById('cityName').value
     const depDate = document.getElementById('visitDate').value
@@ -85,12 +86,17 @@ function performAction(event) {
 
     if (isValidCity(cityName)) {
         if (difference <= 7) {
-            getData(cityName, weatherBitURL, geonameURL, geonameKey, weatherBitAPIkey, pixURL, pixabay);
+            setArray();
+            getApiKeys().then((keyData) => {
+                getAllData(keyData, weatherBitURL, cityName);
+            });
         }
 
         else if (difference > 7 && difference <= 16) {
-            getData(cityName, weatherBitURL1, geonameURL, geonameKey, weatherBitAPIkey, pixURL, pixabay);
-
+            setArray();
+            getApiKeys().then((keyData) => {
+                getAllData(keyData, weatherBitURL1, cityName);
+            });
         }
         else {
             alert("Invalid Date");
@@ -100,6 +106,17 @@ function performAction(event) {
     }
 
 }
+
+const getApiKeys = async () => {
+    const resp = await fetch('http://localhost:8081/getApiKeys')
+    try {
+        const data = await resp.json();
+        return data;
+    } catch (error) {
+        console.log("error", error);
+    }
+}
+
 
 const getData = (cityName, weatherURL, geonameURL, geonameKey, weatherBitAPIkey, pixURL, pixabay) => {
     let country;
@@ -112,7 +129,6 @@ const getData = (cityName, weatherURL, geonameURL, geonameKey, weatherBitAPIkey,
 
         document.getElementById('long').innerHTML = `Longitude : ${data.geonames[0].lng}`;
         const weatherBitLong = `lon=${data.geonames[0].lng}`;
-
         return getWeatherData(weatherURL, weatherBitLat, weatherBitLong, weatherBitAPIkey)
 
     }).then(function (data1) {
@@ -175,5 +191,4 @@ function currentWeather(data1) {
 }
 
 
-export { getCity }
-export { performAction }
+export { getCity, clearItems, performAction, setInitialList }
