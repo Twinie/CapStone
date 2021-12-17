@@ -1,10 +1,12 @@
-# Weather-Journal App Project
+# CAPSTONE Project
 
 ## Overview
-I have tried to create an asynchronous web app with the instructions given that uses Web API and user data to dynamically update the UI. 
+I have built a Travel App that obtains a desired trip location and visiting date from the user which needs to be within 16 days. With this information from the user, I have displayed Country, Latitude, Longitude, weather and an image of the location using information obtained from external APIs. 
 
 ## Instructions
-Use `npm install` to install project dependencies. I have modified the `server.js` file and the `website/app.js` file as required.
+I have set up the local storage. The trip location and the date will be displalyed on UI as the information is saved on the local storage and the local storage can cleared also once the clear list button is clicked. 
+
 
 ## Extras
- I have used this as my web API url reference taken from openWeatherMap.com and the mail received from the URL for the API Key = api.openweathermap.org/data/2.5/weather?zip={zip code}&appid={API key}
+The files and folders are placed as per the required format.
+Jest has been installed and I have tested the get city function.

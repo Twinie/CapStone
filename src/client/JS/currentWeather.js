@@ -1,4 +1,4 @@
-
+// TODO: Is this being used? There is no export here. Remove if unused
 function currentWeather(data1) {
 
     console.log(data1);

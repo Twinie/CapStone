@@ -4,29 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <title>Travel Planner</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,600,700|Ranga:400,700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <nav>
-    <ul class="list">
-      <li class="list1">
-        <a class="home" href="indexpage.html">Home</a>
-      </li>
-      <li>
-        <a class="info" href="index.html">Travel-Info</a>
-      </li>
-    </ul>
-  </nav>
+
   <h1 class="holder headline">
     Travel Planner
   </h1>
 
   <div id="app" class="app">
     <div class="holder zip">
-      <label for="city">Enter the Destined City!</label>
       <form action=""></form>
-      <input type="text" id="cityName" placeholder="Enter City-name">
+      <input type="text" id="cityName" placeholder="Enter Destined City-name">
       <input type="date" id="visitDate" placeholder="">
 
       <button id="generate" type="submit"> Explore! </button>
@@ -39,16 +31,25 @@
     <div class="holder">
       <div class="title"></div>
       <div id="entryHolder">
-        <div id="country"></div>
-        <div id="lat"></div>
-        <div id="long"></div>
-        <div id="temp"></div>
-        <div id="wind"></div>
+        <div id="country" class="entryHolder-items"></div>
+        <div id="lat" class="entryHolder-items"></div>
+        <div id="long" class="entryHolder-items"></div>
+        <div id="temp" class="entryHolder-items"></div>
+        <div id="wind" class="entryHolder-items"></div>
         <img id="placeImage" class="" src="">
       </div>
     </div>
   </div>
 
+  <script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+  </script>
 </body>
 
 </html>

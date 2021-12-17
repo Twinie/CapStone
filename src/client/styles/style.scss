@@ -1,7 +1,6 @@
 body{
-    // background-color: antiquewhite;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: beige;
+    background-color: rgb(14, 14, 13);
 }
 
 .list{
@@ -31,15 +30,22 @@ nav{
 a:hover{
     color: #3a8ff0;
 }
+#generate:hover{
+    background-color: #1c3552;
+    box-shadow: 2px 4px 5px;
+}
+#clear:hover{
+    background-color: #1c3552;
+    box-shadow: 2px 4px 5px;
+}
 
 h1{
-    // background-color: #3b4a6b;
     font-family: 'Oswald', sans-serif;
-    color: #3a8ff0;
+    color: #112c4b;
     font-size: 45px;
     align-self: center;
     padding: 10px;
-height: 25px;
+    height: 25px;
 
 }
 
@@ -47,20 +53,16 @@ height: 25px;
     display: grid;
     grid-auto-rows: minmax(200px, max-content);
     grid-template-columns: 350px 1fr;
-    // height:100vh;
     width:auto;
-    background: #ee8d9f;
-    color: #1d4878;
+    background: linear-gradient(rgb(54, 42, 97) 0%,  #1d4878 50%, #475a70 100%);
+    color: rgb(163, 145, 145);
     justify-content: center;
     align-items: center;
     grid-gap: 2em;
     font-size: 30px;
     font-family: 'Oswald', sans-serif;
-    box-shadow: 2px 4px 5px #444;
-
+    box-shadow: 2px 4px 5px;
 }
-
-
 
 .feel{
     display: grid;
@@ -70,7 +72,7 @@ height: 25px;
 .entry{
     background: #364247;
     font-size: 25px;
-    box-shadow: 2px 4px 5px #444;
+    box-shadow: 2px 4px 5px;
     margin: 20px;
     padding: 20px;
     justify-content: center;
@@ -78,13 +80,12 @@ height: 25px;
 
 }
 
-
-/*  Basic Styling To Override Default For Basic HTML Elements */
-label{
-    display:block;
-    font-size: 25px;
+.holder{
+display:grid;
+justify-content: center;
 }
 
+/*  Basic Styling To Override Default For Basic HTML Elements */
 input{
     display:block;
     height: 60px;
@@ -95,7 +96,7 @@ input{
     font-family: 'Oswald', sans-serif;
     border: none;
     margin: 15px;
-    box-shadow: 2px 4px 5px #444;
+    box-shadow: 2px 4px 5px ;
 
 }
 
@@ -103,23 +104,23 @@ button{
     width: 300px;
     height: 80px;
     background: #4d72c4;
-    color: #f0d43a;
+    color: #141309;
     font-size: 25px;
     font-family: 'Oswald', sans-serif;
     border: none;
-    box-shadow: 2px 4px 5px #444;
+    box-shadow: 2px 4px 5px;
     cursor: pointer;
     margin: 20px;
 }
 
 textarea{
     background:#bdeaf7;
-    color: #f0d43a;
+    color: #141309;
     font-size: 20px;
     font-family: 'Oswald', sans-serif;
-    box-shadow: 2px 4px 5px #444;
-
+    box-shadow: 2px 4px 5px rgb(156, 151, 151);
 }
+
 #placeImage{
   display: none;
   border-bottom-left-radius: 80px;
@@ -133,7 +134,7 @@ textarea{
 
 .remDisc{
     list-style-type: none;
-    color:rgb(78, 70, 70)
+    color:rgb(163, 145, 145)
 }
 /* Reset style for HTML element on active to have no border*/
 input:focus,
@@ -144,29 +145,64 @@ button:focus {
 }
 /* Style for Placeholder Text*/
 ::placeholder { /* Firefox, Chrome, Opera */ 
-    color: #f0d43a; 
+    color: #141309; 
     font-family: 'Oswald', sans-serif;
-
-
 } 
   
 :-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-    color: #f0d43a; 
+    color: #141309; 
     font-family: 'Oswald', sans-serif;
 
 } 
   
 ::-ms-input-placeholder { /* Microsoft Edge */ 
-    color: #f0d43a; 
+    color: #141309; 
     font-family: 'Oswald', sans-serif;
 
 } 
-
-
-@media screen and (max-width: 600px) {
-  .app {
+.entryHolder-items{
+    text-align: center;
+    }
+    
+@media  (min-width:320px) and (max-width: 767px) {
+  #app {
     display: grid;
     grid-auto-rows: minmax(100px, max-content);
     grid-template-columns: 1fr;
+    justify-content: center;
   }   
+
+  #placeImage{
+    border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px;
+    height: 200px;
+    width: 300px;
+    &.show{
+        display:block;
+        justify-content: center;
+    }
+  }
+     
+}
+
+@media (min-width:767px) and (max-width: 1150px){
+
+    #app {
+        display: grid;
+        grid-auto-rows: minmax(100px, max-content);
+        grid-template-columns: 1fr;
+        justify-content: center;
+      }   
+
+    #placeImage{
+        border-bottom-left-radius: 50px;
+        border-top-right-radius: 50px;
+        height: 350px;
+        width: 550px;
+        &.show{
+            display:block;
+            justify-content: center;
+        }
+      }
+
 }
